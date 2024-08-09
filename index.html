@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>campusen</title>
+    <link rel="shortcut icon" href="images/logo.jpg" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.1/css/bootstrap-grid.min.css" integrity="sha512-Aa+z1qgIG+Hv4H2W3EMl3btnnwTQRA47ZiSecYSkWavHUkBF2aPOIIvlvjLCsjapW1IfsGrEO3FU693ReouVTA==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
+<style>
+    .pagetitle{
+        text-align: center;
+        text-transform: capitalize;
+    }
+    .ileft{ cursor: pointer;}
+</style>
+</head>
+<body>
+    <section class="main" ng-app="cpapp">
+        <div class="maincontent" ng-controller="cpctrl as ctrl">
+            <h1 class="pagetitle">{{ctrl.appname}}</h1> 
+            <input type="text" list="universite" class="search"  placeholder="Rechercher par" ng-model="ctrl.key" ng-pattern="'[a-zA-Z-_.]+'">
+            <datalist id="universite">
+                <option value="Universite">
+                <option value="Filiere">
+                <option value="Serie">
+            </datalist>
+            <input type="text" class="search"  placeholder="Rechercher....." ng-model="ctrl.search" ng-pattern="'[a-zA-Z]+'">
+            <div style="display: flex;">
+                <div style="padding: 5px;">
+                    {{ctrl.test}}
+                    
+                    <ul ng-repeat="fil in ctrl.database | filter: {name:ctrl.search} | orderBy: 'universite.sigle'">
+                        <li>{{fil.name}} <br> 
+                            <span style="background-color: rgba(85, 85, 190, 0.836);"> {{fil.universite.name}} ({{fil.universite.sigle}})</span></li>
+                        
+                    </ul>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.1/js/bootstrap.min.js" integrity="sha512-EKWWs1ZcA2ZY9lbLISPz8aGR2+L7JVYqBAYTq5AXgBkSjRSuQEGqWx8R1zAX16KdXPaCjOCaKE8MCpU0wcHlHA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="database.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
